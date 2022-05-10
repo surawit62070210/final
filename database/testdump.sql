@@ -1,21 +1,14 @@
-CREATE TABLE Student(
-       student_id INT PRIMARY KEY AUTO_INCREMENT, 
-       student_name VARCHAR(60), 
-       student_age INT
+CREATE TABLE USER(
+       user_id INT PRIMARY KEY AUTO_INCREMENT, 
+       user_name VARCHAR(60), 
+       user_age INT
 );
-INSERT INTO Student(
-       student_name, 
-       student_age) 
+INSERT INTO USER(
+       user_name, 
+       user_age) 
 VALUES(
-       "APISORN TEEHOR", 
+       "Surawit Supornrutai", 
         21
-);
-INSERT INTO Student(
-       student_name, 
-       student_age) 
-VALUES(
-       "SURASITH KLAWEWIKIT", 
-        23
 );
 ALTER USER 'root' IDENTIFIED WITH mysql_native_password BY 'password'; 
 flush privileges;

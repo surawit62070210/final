@@ -1,27 +1,37 @@
+
 <template>
   <div id="app">
-    <div>
-      <h1>TABLE INFORMATION STUDENT</h1>
+    <nav
+      class="navbar has-background-warning"
+      role="navigation"
+      aria-label="main navigation"
+    >
+      <div class="navbar-brand">
+        <a class="navbar-item">
+          <img
+            src="https://www.kmids.ac.th/wp-content/uploads/2021/04/Sub-Logo-KMITL_KMITL-%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%88%E0%B8%AD%E0%B8%A1%E0%B9%80%E0%B8%81%E0%B8%A5%E0%B9%89%E0%B8%B2%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%B1%E0%B8%87.png"
+            width="100"
+          />
+        </a>
+
+        <a
+          role="button"
+          class="navbar-burger"
+          aria-label="menu"
+          aria-expanded="false"
+          data-target="navbarBasicExample"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+    </nav>
+    <div id="content">
+      <h2 id="textWhite">ระบบรับสมัครนักศึกษาระดับปริญญาตรี</h2>
+      <h2 id="textRed">สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง</h2>
     </div>
-    <!-- ตาราง -->
-    <div class="table">
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>StudentName</th>
-            <th>AGE</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="student in students" :key= "student.student_id">
-            <th>{{student.student_id}}</th>
-            <td>{{student.student_name}}</td>
-            <td>{{student.student_age}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    
   </div>
 </template>
 
@@ -50,14 +60,26 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  /* text-align: center; */
+  color: #000000;
+  background-color: #c98c7b;
+  width: 100%;
+  height: 100%;
 }
-table{
-  margin-left: auto;
-  margin-right: auto;
+#content{
+  padding-left: 10%;
+  padding-right: 10%;
+}
+.navbar-brand{
+  background-color: #FFFFFF;
+}
+#textWhite{
+  color: #FFFFFF;
+}
+#textRed{
+  color: #ff3b00;
+  background-color: #efdcd8;
+  width: 37%;
   text-align: center;
-  border: solid;
 }
 </style>
