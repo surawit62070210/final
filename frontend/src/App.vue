@@ -2,7 +2,7 @@
 <template>
   <div id="app">
     <nav
-      class="navbar has-background-white"
+      class="navbar has-background-white is-fixed-top"
       role="navigation"
       aria-label="main navigation"
     >
@@ -45,7 +45,7 @@
       </div>
     </div>
     </nav>
-    <div id="content">
+    <div id="content" style="margin-top:2em;padding-top:2em">
       <h2 id="textWhite" style="font-size: 0.6cm;">ระบบรับสมัครนักศึกษาระดับปริญญาตรี</h2>
       <h2 id="textRed" style="font-size: 0.6cm;">สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง</h2>
       <div style="background-color:#2b2b2b;width:15%;text-align:center;margin-top:2em">
@@ -131,7 +131,19 @@
           <p style="color:#666666">วันที่เปิดรับสมัคร : 3 พฤษภาคม 2022 - 19 พฤษภาคม 2022</p>
           <p style="color:#97e865">*** หมายเหตุ : ผู้ที่สมัครและชำระเงินค่าสมัครในโครงการรับตรงแบบปกติในรายการ 1.1 สามารถสมัครสาขาวิชาในโครงการ Unified Bachelor's & Master's DegreeProgram 1.2 หรือ 1.3 (AIT หรือ CMKL) ได้โดยไม่ต้องจ่ายเงินค่าสมัครเพิ่มเติม (After you have completely applied to program 1.1 and paid for the application fee payment, you may apply to the lists of 1.2 or 1.3 (Direct Admissions 3 : 5 years Unified Bachelor's & Master's Degree Program KMITL - AIT or KMITL - CMKL) without additional fee.)</p>
           <div class="buttons">
-            <button class="button is-info">สมัคร</button>
+            <button class="button is-info" @click="modal = !modal">สมัคร</button>
+            <button class="button" style="background-color:#512ea8;color:#FFFFFF">ประกาศรับสมัคร</button>
+            <button class="button" style="background-color:#b61d1c;color:#FFFFFF">ข้อมูลเพิ่มเติม</button>
+          </div>
+        </div>
+        <div v-for="Curriculum in Curriculums" :key="Curriculum.id" class="has-background-white" style="padding:1em;font-size: 0.6cm;">
+          <p>{{Curriculum.curriculum_name}}</p>
+          <p style="color:#fd2e2a">{{Curriculum.faculty}}</p>
+          <p style="color:#666666">{{Curriculum.curriculum_name}}</p>
+          <p style="color:#666666">{{Curriculum.openDate}}</p>
+          <p style="color:#97e865">{{Curriculum.remark}}</p>
+          <div class="buttons">
+            <button class="button is-info" @click="modal = !modal">สมัคร</button>
             <button class="button" style="background-color:#512ea8;color:#FFFFFF">ประกาศรับสมัคร</button>
             <button class="button" style="background-color:#b61d1c;color:#FFFFFF">ข้อมูลเพิ่มเติม</button>
           </div>
@@ -139,7 +151,35 @@
       
       </div>
     </div>
-    
+    <div class="modal" :class="{ 'is-active': modal }">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">เข้าสู่ระบบ</p>
+          <button class="delete" aria-label="close" @click="modal = !modal"></button>
+        </header>
+        <section class="modal-card-body">
+          <b>Email</b>
+            <input
+              class="input"
+            />
+            <b>Password</b>
+            <input
+              class="input"
+              type="password"
+            />
+        </section>
+        <footer class="modal-card-foot">
+          <div class="column"> 
+            <button class="button is-success is-full">เข้าสู่ระบบ</button>   
+          </div>
+          <div class="column"> 
+            <button class="button" @click="modal = !modal">ปิด</button>  
+          </div>
+          
+        </footer>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -148,7 +188,8 @@ import axios from "axios";
 export default {
   data(){
     return{
-    students:[]
+    Curriculum:[],
+    modal: false,
     }
   },
   mounted() {
@@ -156,7 +197,7 @@ export default {
       .get("http://localhost:5002")
       .then((response) => {
         console.log(response)
-        this.students= response.data.rows
+        this.Curriculum= response.data.rows
         });
 
   },
@@ -165,15 +206,11 @@ export default {
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   /* text-align: center; */
   color: #000000;
   background-color: #c98c7b;
   width: 100%;
   height: 100%;
-  
 }
 #content{
   padding-left: 10%;

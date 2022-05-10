@@ -13,7 +13,7 @@ const connection = mysql.createPool({
 });
 
 app.get("/", (req, res) => {
-  connection.query("SELECT * FROM Student", (err, rows) => {
+  connection.query("SELECT * FROM Curriculum", (err, rows) => {
     if (err) {
       res.json({
         success: false,
