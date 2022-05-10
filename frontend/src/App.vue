@@ -188,7 +188,7 @@ import axios from "axios";
 export default {
   data(){
     return{
-    Curriculum:[],
+    Curriculums:[],
     modal: false,
     }
   },
@@ -197,7 +197,7 @@ export default {
       .get("http://localhost:5002")
       .then((response) => {
         console.log(response)
-        this.Curriculum= response.data.rows
+        this.Curriculums= response.data.rows
         });
 
   },
