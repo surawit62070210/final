@@ -8,14 +8,13 @@ pipeline {
             }
         }
         stage('Download dependency') {
-            steps {   
-                sh 'cd project_dev-tools_frontend && rm -rf node_modules/'
-                sh 'cd project_dev-tools_frontend && npm install'
+            steps {
+                sh 'cd fronend && npm install'
             }
         }
         stage('Unit test') {
             steps {
-                dir('./project_dev-tools_frontend') {
+                dir('./frontend') {
                 sh 'npm run test:unit'
                 publishHTML target: [
                         allowMissing: false,
@@ -38,7 +37,7 @@ pipeline {
         }
         stage('Component test') {
             steps {
-                dir('./project_dev-tools_frontend')  {
+                dir('./frontend')  {
                     sh 'npm run cypress:run'
                     publishHTML target: [
                         allowMissing: false,
@@ -61,7 +60,7 @@ pipeline {
         }
         stage("Code coverage report") {
             steps {
-                clover(cloverReportDir: './project_dev-tools_frontend/coverage', cloverReportFileName: 'clover.xml',
+                clover(cloverReportDir: './frontend/coverage', cloverReportFileName: 'clover.xml',
                     healthyTarget: [methodCoverage: 70, conditionalCoverage: 80, statementCoverage: 80],
                     unhealthyTarget: [methodCoverage: 50, conditionalCoverage: 50, statementCoverage: 50],
                     failingTarget: [methodCoverage: 0, conditionalCoverage: 0, statementCoverage: 0]
@@ -79,11 +78,11 @@ pipeline {
                         remote.password = PASSWORD
                         remote.allowAnyHosts = true
                         
-                        sshCommand remote: remote, command: "git clone -b main https://github.com/Flukena/project-sw-dev-and-env.git"
-                        sshCommand remote: remote, command: "docker-compose -f project-sw-dev-and-env/docker-compose-deploy-frontend.yml down"
-                        sshCommand remote: remote, command: "docker-compose -f project-sw-dev-and-env/docker-compose.yml build --no-cache app"
-                        sshCommand remote: remote, command: "docker-compose -f project-sw-dev-and-env/docker-compose-deploy-frontend.yml up -d"
-                        sshCommand remote: remote, command: "rm -r project-sw-dev-and-env"
+                        sshCommand remote: remote, command: "git clone -b main https://github.com/surawit62070210/final.git"
+                        sshCommand remote: remote, command: "docker-compose -f final/docker-compose.yml down"
+                        sshCommand remote: remote, command: "docker-compose -f final/docker-compose.yml build --no-cache app"
+                        sshCommand remote: remote, command: "docker-compose -f final/docker-compose.yml up -d"
+                        sshCommand remote: remote, command: "rm -r final"
                     }
                 }
             }
