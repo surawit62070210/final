@@ -35,7 +35,7 @@ export default {
   },
   mounted() {
     axios
-      .get("http://localhost:5000")
+      .get("http://localhost:5002")
       .then((response) => {
         console.log(response)
         this.students= response.data.rows

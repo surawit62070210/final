@@ -1,8 +1,8 @@
 const express = require("express");
-var cors = require('cors');
+var cors = require("cors");
 const mysql = require("mysql");
 const app = express();
-app.use(cors())
+app.use(cors());
 
 const connection = mysql.createPool({
   connectionLimit: 10,
@@ -28,4 +28,4 @@ app.get("/", (req, res) => {
   });
 });
 
-app.listen(5000, () => console.log("listining on port 5000"));
+app.listen(5002, () => console.log("listining on port 5002"));
