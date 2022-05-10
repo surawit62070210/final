@@ -26,6 +26,24 @@
           <span aria-hidden="true"></span>
         </a>
       </div>
+      <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <button class="button is-rounded" style="background-color:black;color:#FFFFFF">
+            <span class="icon">
+               <font-awesome-icon icon="fa-solid fa-user" />
+            </span>
+            <span>เข้าสู่ระบบ / ลงทะเบียน</span>
+          </button>
+          <a class="button is-white" style="border-color:lightgrey;color:darkgrey">
+            <strong>ENG</strong>
+          </a>
+          <a class="button" style="background-color:#f34236;color:white">
+            ไทย
+          </a>
+        </div>
+      </div>
+    </div>
     </nav>
     <div id="content">
       <h2 id="textWhite" style="font-size: 0.6cm;">ระบบรับสมัครนักศึกษาระดับปริญญาตรี</h2>
@@ -112,7 +130,11 @@
           <p style="color:#666666">หลักสูตร : Chemical Engineering (International Program) / Chemical Engineering (International Program)</p>
           <p style="color:#666666">วันที่เปิดรับสมัคร : 3 พฤษภาคม 2022 - 19 พฤษภาคม 2022</p>
           <p style="color:#97e865">*** หมายเหตุ : ผู้ที่สมัครและชำระเงินค่าสมัครในโครงการรับตรงแบบปกติในรายการ 1.1 สามารถสมัครสาขาวิชาในโครงการ Unified Bachelor's & Master's DegreeProgram 1.2 หรือ 1.3 (AIT หรือ CMKL) ได้โดยไม่ต้องจ่ายเงินค่าสมัครเพิ่มเติม (After you have completely applied to program 1.1 and paid for the application fee payment, you may apply to the lists of 1.2 or 1.3 (Direct Admissions 3 : 5 years Unified Bachelor's & Master's Degree Program KMITL - AIT or KMITL - CMKL) without additional fee.)</p>
-
+          <div class="buttons">
+            <button class="button is-info">สมัคร</button>
+            <button class="button" style="background-color:#512ea8;color:#FFFFFF">ประกาศรับสมัคร</button>
+            <button class="button" style="background-color:#b61d1c;color:#FFFFFF">ข้อมูลเพิ่มเติม</button>
+          </div>
         </div>
       
       </div>
