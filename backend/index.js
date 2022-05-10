@@ -1,28 +1,31 @@
-const express = require("express")
-var cors = require('cors')
-const path = require("path")
-
+const express = require("express");
+var cors = require('cors');
+const mysql = require("mysql");
 const app = express();
-const { logger } = require('./middlewares')
-app.use(logger)
 app.use(cors())
-// Statics
-app.use(express.static('static'))
 
-app.use(express.json()) // for parsing application/json
-app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+const connection = mysql.createPool({
+  connectionLimit: 10,
+  host: process.env.MYSQL_HOST || "localhost",
+  user: process.env.MYSQL_USER || "root",
+  password: process.env.MYSQL_PASSWORD || "password",
+  database: process.env.MYSQL_DATABASE || "test",
+});
 
-// routers
-const indexRouter = require('./routes/index')
-const blogRouter = require('./routes/blog')
-const commentRouter = require('./routes/comment')
-const day = require('./routes/day')
+app.get("/", (req, res) => {
+  connection.query("SELECT * FROM Student", (err, rows) => {
+    if (err) {
+      res.json({
+        success: false,
+        err,
+      });
+    } else {
+      res.json({
+        success: true,
+        rows,
+      });
+    }
+  });
+});
 
-app.use(indexRouter.router)
-app.use(blogRouter.router)
-app.use(commentRouter.router)
-app.use(day.router)
-
-app.listen(3000, () => {
-  console.log(`Example app listening at http://localhost:3000`)
-})
+app.listen(5000, () => console.log("listining on port 5000"));
